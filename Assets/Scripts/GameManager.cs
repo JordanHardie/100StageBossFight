@@ -1,6 +1,7 @@
 ﻿public enum GameState
 {
     TITLE,
+    MENU,
     INGAME,
     PAUSED,
     GAMEOVER
