@@ -7,6 +7,23 @@ public class AnimationManager : MonoBehaviour
 {
     public Animator transition;
     public float transtionTime;
+    public bool IsBackground = false;
+
+    void Update()
+    {
+        if(IsBackground == true)
+        {
+            MoveBG();
+        }
+    }
+
+    void MoveBG()
+    {
+        float MouseX = Input.GetAxis("Mouse X");
+        float MouseY = Input.GetAxis("Mouse Y");
+
+        transform.Translate(new Vector3(MouseX, MouseY, 0));
+    }
 
     public void OnClick()
     {
