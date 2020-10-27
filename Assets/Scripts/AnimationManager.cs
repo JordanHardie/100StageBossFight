@@ -22,7 +22,9 @@ public class AnimationManager : MonoBehaviour
         float MouseX = Input.GetAxis("Mouse X");
         float MouseY = Input.GetAxis("Mouse Y");
 
-        transform.Translate(new Vector3(MouseX, MouseY, 0));
+        transform.Rotate(-MouseY, MouseX, 0);
+        float z = transform.eulerAngles.z;
+        transform.Rotate(0, 0, -z);
     }
 
     public void OnClick()

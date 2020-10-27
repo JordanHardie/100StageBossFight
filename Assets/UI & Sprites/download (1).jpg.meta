@@ -1,0 +1,506 @@
+fileFormatVersion: 2
+guid: 4eed4281ec73feb46b4acda78b6572d4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2227294742669426013
+    second: download (1)_0
+  - first:
+      213: -2472877658029629811
+    second: download (1)_0
+  - first:
+      213: -8598462840186298345
+    second: download (1)_1
+  - first:
+      213: -8238929650393760733
+    second: download (1)_2
+  - first:
+      213: 5915957280351852439
+    second: download (1)_3
+  - first:
+      213: -7738808229855007252
+    second: download (1)_4
+  - first:
+      213: -304593465635478940
+    second: download (1)_5
+  - first:
+      213: -6169810434755283485
+    second: download (1)_6
+  - first:
+      213: -1023261430536304328
+    second: download (1)_7
+  - first:
+      213: 6004659986123945268
+    second: download (1)_8
+  - first:
+      213: -1909105748165594714
+    second: download (1)_9
+  - first:
+      213: -7026800987844605360
+    second: download (1)_10
+  - first:
+      213: -5338520308231926317
+    second: download (1)_11
+  - first:
+      213: -7559427475116440570
+    second: download (1)_12
+  - first:
+      213: -8706734969265815192
+    second: download (1)_13
+  - first:
+      213: -7240423272049552229
+    second: download (1)_14
+  - first:
+      213: 2398479162738708093
+    second: download (1)_15
+  - first:
+      213: -4714956886019734673
+    second: download (1)_16
+  - first:
+      213: 721895777457349781
+    second: download (1)_17
+  - first:
+      213: -5309114216507459895
+    second: download (1)_18
+  - first:
+      213: -3980404375935084660
+    second: download (1)_19
+  - first:
+      213: 1669033377841458879
+    second: download (1)_20
+  - first:
+      213: 5836413731346995793
+    second: download (1)_21
+  - first:
+      213: 8507468086105922520
+    second: download (1)_22
+  - first:
+      213: 1573848638261310724
+    second: download (1)_23
+  - first:
+      213: -6583707089218958566
+    second: download (1)_24
+  - first:
+      213: 7443858963466489767
+    second: download (1)_25
+  - first:
+      213: 8888927883324370204
+    second: download (1)_26
+  - first:
+      213: -2018581728987914374
+    second: download (1)_27
+  - first:
+      213: -6914055316968646717
+    second: download (1)_28
+  - first:
+      213: -1099498129438358294
+    second: download (1)_29
+  - first:
+      213: 2077427229347465616
+    second: download (1)_30
+  - first:
+      213: -7757067121893007883
+    second: download (1)_31
+  - first:
+      213: 4415256938115495533
+    second: download (1)_32
+  - first:
+      213: 4071632169615510470
+    second: download (1)_33
+  - first:
+      213: -1775139596046299104
+    second: download (1)_34
+  - first:
+      213: -1603612914290556975
+    second: download (1)_35
+  - first:
+      213: -5699755545743739491
+    second: download (1)_36
+  - first:
+      213: 5492954864839262029
+    second: download (1)_37
+  - first:
+      213: -7924639103498114072
+    second: download (1)_38
+  - first:
+      213: -6628641801022856491
+    second: download (1)_39
+  - first:
+      213: -7408118797875252897
+    second: download (1)_40
+  - first:
+      213: -2533348428308090644
+    second: download (1)_41
+  - first:
+      213: -6532922083945876153
+    second: download (1)_42
+  - first:
+      213: 7196916060906377172
+    second: download (1)_43
+  - first:
+      213: 1311966196999465581
+    second: download (1)_44
+  - first:
+      213: 6817457637903150962
+    second: download (1)_45
+  - first:
+      213: -2103415638275173418
+    second: download (1)_46
+  - first:
+      213: 491953481825694156
+    second: download (1)_47
+  - first:
+      213: -7503280014295386471
+    second: download (1)_48
+  - first:
+      213: 3959223319162526020
+    second: download (1)_49
+  - first:
+      213: 7574742696911138567
+    second: download (1)_50
+  - first:
+      213: 4202477962858916647
+    second: download (1)_51
+  - first:
+      213: -5263863292506822156
+    second: download (1)_52
+  - first:
+      213: -9046393657295759406
+    second: download (1)_53
+  - first:
+      213: -5399093707150100463
+    second: download (1)_54
+  - first:
+      213: 654680082769074766
+    second: download (1)_55
+  - first:
+      213: 5164529256866938305
+    second: download (1)_56
+  - first:
+      213: 7184381879557163280
+    second: download (1)_57
+  - first:
+      213: -2584775133813363902
+    second: download (1)_58
+  - first:
+      213: 4763293837433662878
+    second: download (1)_59
+  - first:
+      213: 1796052581458146807
+    second: download (1)_60
+  - first:
+      213: 1966379660652656717
+    second: download (1)_61
+  - first:
+      213: -9001390698370048331
+    second: download (1)_62
+  - first:
+      213: 8486089472451231156
+    second: download (1)_63
+  - first:
+      213: 8007174277225592576
+    second: download (1)_64
+  - first:
+      213: 6239430777045452594
+    second: download (1)_65
+  - first:
+      213: 3780056335847644482
+    second: download (1)_66
+  - first:
+      213: 5817669768967227189
+    second: download (1)_67
+  - first:
+      213: 2961709651761050554
+    second: download (1)_68
+  - first:
+      213: 6844308693964427664
+    second: download (1)_69
+  - first:
+      213: 2559240973100588100
+    second: download (1)_70
+  - first:
+      213: 4422621215181563601
+    second: download (1)_71
+  - first:
+      213: -7173210711533563165
+    second: download (1)_72
+  - first:
+      213: 3240564371989997345
+    second: download (1)_73
+  - first:
+      213: 1836024334722547628
+    second: download (1)_74
+  - first:
+      213: -3608926931530496257
+    second: download (1)_75
+  - first:
+      213: 7435388759829426331
+    second: download (1)_76
+  - first:
+      213: 9088604295650881629
+    second: download (1)_77
+  - first:
+      213: 4074064571043122895
+    second: download (1)_78
+  - first:
+      213: -7849194636730613690
+    second: download (1)_79
+  - first:
+      213: -4751255801658581089
+    second: download (1)_80
+  - first:
+      213: -4506277003074668014
+    second: download (1)_81
+  - first:
+      213: 3926389254010226069
+    second: download (1)_82
+  - first:
+      213: -1691603969372054152
+    second: download (1)_83
+  - first:
+      213: 805193206607626333
+    second: download (1)_84
+  - first:
+      213: 5374130484198510510
+    second: download (1)_85
+  - first:
+      213: -498675857498001862
+    second: download (1)_86
+  - first:
+      213: -5650719661303667933
+    second: download (1)_87
+  - first:
+      213: -7132714649327760114
+    second: download (1)_88
+  - first:
+      213: 339677439514125615
+    second: download (1)_89
+  - first:
+      213: 4995250807204093936
+    second: download (1)_90
+  - first:
+      213: -1234532603058220210
+    second: download (1)_91
+  - first:
+      213: 7203388766140612839
+    second: download (1)_92
+  - first:
+      213: -7637461611084798763
+    second: download (1)_93
+  - first:
+      213: 7347924081475595030
+    second: download (1)_94
+  - first:
+      213: -158604237660567710
+    second: download (1)_95
+  - first:
+      213: -4570754123027992586
+    second: download (1)_96
+  - first:
+      213: 5739198738525944817
+    second: download (1)_97
+  - first:
+      213: -7358328503004133416
+    second: download (1)_98
+  - first:
+      213: -3369613419769406538
+    second: download (1)_99
+  - first:
+      213: 2175814993715268596
+    second: download (1)_100
+  - first:
+      213: 1822787067758006018
+    second: download (1)_101
+  - first:
+      213: 6454037794379156942
+    second: download (1)_102
+  - first:
+      213: 3986473293956505499
+    second: download (1)_103
+  - first:
+      213: -7110808037659637801
+    second: download (1)_104
+  - first:
+      213: -8410035275083106496
+    second: download (1)_105
+  - first:
+      213: -3574956305208505645
+    second: download (1)_106
+  - first:
+      213: -6291384653327260969
+    second: download (1)_107
+  - first:
+      213: -2826700640540653632
+    second: download (1)_108
+  - first:
+      213: -4719670478272727039
+    second: download (1)_109
+  - first:
+      213: 4309782719154632465
+    second: download (1)_110
+  - first:
+      213: -9200210529170703355
+    second: download (1)_111
+  - first:
+      213: 5324876145101646766
+    second: download (1)_112
+  - first:
+      213: 2233003037675327560
+    second: download (1)_113
+  - first:
+      213: -1284930965947686639
+    second: download (1)_114
+  - first:
+      213: 70091150812419392
+    second: download (1)_115
+  - first:
+      213: -6162450402173133735
+    second: download (1)_116
+  - first:
+      213: -2613337497424070194
+    second: download (1)_117
+  - first:
+      213: 5659114637754153244
+    second: download (1)_118
+  - first:
+      213: 1196238904593642260
+    second: download (1)_119
+  - first:
+      213: -5243682977520430463
+    second: download (1)_120
+  - first:
+      213: 5750401997383994994
+    second: download (1)_121
+  - first:
+      213: -4951904267553192788
+    second: download (1)_122
+  - first:
+      213: 2420977635712744060
+    second: download (1)_123
+  - first:
+      213: -9207070915159862518
+    second: download (1)_124
+  - first:
+      213: 249172811415348847
+    second: download (1)_125
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: download (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 474
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a208157b3f0711e0800000000000000
+      internalID: -2227294742669426013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
