@@ -417,7 +417,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 482992844}
-  - component: {fileID: 482992845}
   m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
@@ -443,19 +442,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &482992845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 482992843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86488e696d85f5c4fac2478b185edd81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 50
 --- !u!1 &525446129
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +971,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -1317,7 +1303,7 @@ PrefabInstance:
     - target: {fileID: 5365005436697139403, guid: 7db94484461eaf641b5ef55ac5d2a0c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -399.99997
+      value: -399.99994
       objectReference: {fileID: 0}
     - target: {fileID: 5365005436697139403, guid: 7db94484461eaf641b5ef55ac5d2a0c4,
         type: 3}
