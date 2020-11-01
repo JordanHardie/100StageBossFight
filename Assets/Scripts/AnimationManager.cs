@@ -32,11 +32,6 @@ public class AnimationManager : MonoBehaviour
         transform.Rotate(0, 0, -z);
     }
 
-    public void OnClick()
-    {
-        GameEvents.ReportGameStateChange(GameState.MENU);
-    }
-
     void OnGameStateChange(GameState gameState)
     {
         if (gameState != GameState.TITLE)
