@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     public float speed;
     public Sprite bullet;
 
+    //public CharacterController centreHitBox;
+
     #region Boundary stuff
     public Camera MainCamera;
     private Vector2 screenBounds;
@@ -41,38 +43,26 @@ public class PlayerManager : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
 
-        //Check if user is holding shift
-        switch (Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift))
+        switch(Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift))
         {
-            //If they are, reduce speed
             case true:
                 float tSpeed = speed / 2;
-                transform.Translate(Vector3.right * tSpeed * Time.deltaTime * h);
-                transform.Translate(Vector3.up * tSpeed * Time.deltaTime * v);
+                transform.Translate(Vector3.right * h * tSpeed * Time.deltaTime);
+                transform.Translate(Vector3.up * v * tSpeed * Time.deltaTime);
                 break;
 
-            //If they are not, move normally
             default:
-                transform.Translate(Vector3.right * speed * Time.deltaTime * h);
-                transform.Translate(Vector3.up * speed * Time.deltaTime * v);
+                transform.Translate(Vector3.right * h * speed * Time.deltaTime);
+                transform.Translate(Vector3.up * v * speed * Time.deltaTime);
                 break;
         }
     }
 
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        Debug.Log(collision.tag);
-        if (collision.CompareTag("Bullet"))
-        {
-            GameEvents.ReportGrazeChange(true);
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))
         {
-            GameEvents.ReportGrazeChange(false);
+            GameEvents.ReportHit(true);
         }
     }
 }

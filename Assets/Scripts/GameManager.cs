@@ -21,10 +21,17 @@ public class GameManager : Singleton<GameManager>
     public GameState gameState;
     public Difficulty difficulty;
 
+
     void Start()
     {
         gameState = GameState.TITLE;
         GameEvents.ReportGameStateChange(gameState);
         GameEvents.ReportDifficultyChanged(difficulty);
+    }
+
+    void Hit()
+    {
+        gameState = GameState.GAMEOVER;
+        GameEvents.ReportGameStateChange(gameState);
     }
 }

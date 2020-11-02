@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UI_Manager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI multiText;
     int score;
-    float multi;
+    double multi;
 
     void Update()
     {
-
+        multiText.text = multi + "x";
     }
 
     void Score(int val)
     {
-        float math = val * multi;
-        math = Mathf.RoundToInt(math);
+        double math = val * multi;
+        math = Math.Round(math);
         int result = (int)math;
         score += result;
     }
@@ -27,8 +29,8 @@ public class UI_Manager : MonoBehaviour
     {
         if (isGrazing)
         {
-            multi += 2f;
-            scoreText.text = multi.ToString();
+            multi += 0.1f;
+            multi = Math.Round(multi, 3);
         }
     }
 

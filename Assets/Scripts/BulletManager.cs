@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BulletType
+{
+    STRAIGHT,
+    HOMING,
+    ZIGZAG,
+    SPIN
+}
+
 public class BulletManager : MonoBehaviour
 {
     public GameObject player;
     public float speed;
     public float lifeTime;
-
-    public enum BulletType
-    {
-        STRAIGHT,
-        HOMING,
-        ZIGZAG,
-        SPIN
-    }
-
-    BulletType bulletType;
+    public BulletType bulletType;
 
     void Update()
     {
@@ -40,15 +39,5 @@ public class BulletManager : MonoBehaviour
                     break;
             }
         }
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        Debug.Log(other);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.tag);
     }
 }
