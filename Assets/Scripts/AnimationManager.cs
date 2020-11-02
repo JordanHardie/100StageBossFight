@@ -34,8 +34,7 @@ public class AnimationManager : MonoBehaviour
 
     void OnGameStateChange(GameState gameState)
     {
-        if (gameState != GameState.TITLE)
-            StartCoroutine(LoadLevel(gameState));
+        StartCoroutine(LoadLevel(gameState));
     }
 
     IEnumerator LoadLevel(GameState gameState)

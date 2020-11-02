@@ -29,9 +29,6 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    //Fixed update comes after all collisons, 
-    //so that way if the player collides with a bullet,
-    //they just don't transofrm.Translate avoid it.
     void FixedUpdate()
     {
         Moving();
@@ -55,10 +52,27 @@ public class PlayerManager : MonoBehaviour
                 break;
 
             //If they are not, move normally
-            case false:
+            default:
                 transform.Translate(Vector3.right * speed * Time.deltaTime * h);
                 transform.Translate(Vector3.up * speed * Time.deltaTime * v);
                 break;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log(collision.tag);
+        if (collision.CompareTag("Bullet"))
+        {
+            GameEvents.ReportGrazeChange(true);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            GameEvents.ReportGrazeChange(false);
         }
     }
 }
