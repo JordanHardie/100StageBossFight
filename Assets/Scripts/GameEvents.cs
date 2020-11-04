@@ -5,6 +5,7 @@ public static class GameEvents
     public static event Action<Difficulty> OnDifficultyChange = null;
     public static event Action<GameState> OnGameStateChange = null;
     public static event Action<bool> OnGraze = null;
+    public static event Action<int> OnScoreChange = null;
     public delegate void HitHandler(bool IsHit);
     public static event HitHandler OnHit;
 
@@ -26,5 +27,10 @@ public static class GameEvents
     public static void ReportHit(bool _hit)
     {
         OnHit?.Invoke(_hit);
+    }
+
+    public static void ReportScoreChange(int _val)
+    {
+        OnScoreChange?.Invoke(_val);
     }
 }

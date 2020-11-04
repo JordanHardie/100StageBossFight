@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        gameState = GameState.TITLE;
+        gameState = GameState.MENU;
         GameEvents.ReportGameStateChange(gameState);
         GameEvents.ReportDifficultyChanged(difficulty);
     }

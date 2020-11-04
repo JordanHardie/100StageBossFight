@@ -43,7 +43,15 @@ public class AnimationManager : MonoBehaviour
 
         yield return new WaitForSeconds(transtionTime);
 
-        SceneManager.LoadScene("100SBF_" + gameState.ToString());
+        if (gameState != GameState.GAMEOVER)
+        {
+            SceneManager.LoadScene("100SBF_" + gameState.ToString());
+        }      
+
+        else
+        {
+            //Do stuff
+        }
     }
 
     void OnEnable()

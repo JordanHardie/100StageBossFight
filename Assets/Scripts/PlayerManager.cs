@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public float speed;
-    public Sprite bullet;
-
-    //public CharacterController centreHitBox;
+    public GameObject bullet;
 
     #region Boundary stuff
     public Camera MainCamera;
@@ -43,7 +41,25 @@ public class PlayerManager : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
 
-        switch(Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.D))
+        {
+            if(IsInvoking())
+            {
+                CancelInvoke();
+            }
+            
+            else
+            {
+                InvokeRepeating("Shoot", 0f, 1000f);
+            }
+        }
+
+        else
+        {
+            CancelInvoke();
+        }
+
+        switch (Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift))
         {
             case true:
                 float tSpeed = speed / 2;
@@ -65,5 +81,10 @@ public class PlayerManager : MonoBehaviour
             GameEvents.ReportHit(true);
             Destroy(collision.gameObject);
         }
+    }
+
+    void Shoot()
+    {
+        Instantiate(bullet, transform.position, transform.rotation);
     }
 }

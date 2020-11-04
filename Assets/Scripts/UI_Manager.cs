@@ -14,6 +14,7 @@ public class UI_Manager : MonoBehaviour
 
     void Update()
     {
+        scoreText.text = score.ToString();
         multiText.text = multi + "x";
     }
 
