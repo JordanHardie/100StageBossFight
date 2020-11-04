@@ -29,9 +29,17 @@ public class GameManager : Singleton<GameManager>
         GameEvents.ReportDifficultyChanged(difficulty);
     }
 
-    void Hit()
+    void Hit(bool IsHit)
     {
-        gameState = GameState.GAMEOVER;
-        GameEvents.ReportGameStateChange(gameState);
+        if(IsHit)
+        {
+            gameState = GameState.GAMEOVER;
+            GameEvents.ReportGameStateChange(gameState);
+        }
+    }
+
+    void OnEnable()
+    {
+        GameEvents.OnHit += Hit;
     }
 }

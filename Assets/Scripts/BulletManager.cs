@@ -16,6 +16,7 @@ public class BulletManager : MonoBehaviour
     public float speed;
     public float lifeTime;
     public BulletType bulletType;
+    bool temp = true;
 
     void Update()
     {
@@ -31,13 +32,28 @@ public class BulletManager : MonoBehaviour
             switch (bulletType)
             {
                 case BulletType.STRAIGHT:
-                    //transform.LookAt(player.transform.position);
-                    transform.Translate(-Vector3.up * speed * Time.deltaTime);
+                    if(temp)
+                    {
+                        LookAtPlayer();
+                        temp = false;
+                    }
+
+                    transform.Translate(Vector3.up * speed * Time.deltaTime);
                     break;
 
-                default:
+                case BulletType.HOMING:
+                    LookAtPlayer();
+                    transform.Translate(Vector3.up * speed * Time.deltaTime);
                     break;
             }
         }
+    }
+
+    void LookAtPlayer()
+    {
+        float angle = 0;
+        Vector3 relative = transform.InverseTransformPoint(player.transform.position);
+        angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
+        transform.Rotate(0, 0, -angle);
     }
 }

@@ -63,6 +63,7 @@ public class PlayerManager : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             GameEvents.ReportHit(true);
+            Destroy(collision.gameObject);
         }
     }
 }

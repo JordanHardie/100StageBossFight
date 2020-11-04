@@ -5,7 +5,8 @@ public static class GameEvents
     public static event Action<Difficulty> OnDifficultyChange = null;
     public static event Action<GameState> OnGameStateChange = null;
     public static event Action<bool> OnGraze = null;
-    public static event Action<bool> OnHit = null;
+    public delegate void HitHandler(bool IsHit);
+    public static event HitHandler OnHit;
 
     public static void ReportDifficultyChanged(Difficulty _difficulty)
     {
