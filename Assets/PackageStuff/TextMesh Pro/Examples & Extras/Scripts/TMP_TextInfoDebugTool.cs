@@ -196,8 +196,8 @@ namespace TMPro.Examples
 
                 Vector3 bottomLeft = Vector3.zero;
                 Vector3 topLeft = Vector3.zero;
-                Vector3 bottomRight = Vector3.zero;
-                Vector3 topRight = Vector3.zero;
+                _ = Vector3.zero;
+                _ = Vector3.zero;
 
                 float maxAscender = -Mathf.Infinity;
                 float minDescender = Mathf.Infinity;
@@ -218,7 +218,8 @@ namespace TMPro.Examples
                     // Track Max Ascender and Min Descender
                     maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
                     minDescender = Mathf.Min(minDescender, currentCharInfo.descender);
-
+                    Vector3 bottomRight;
+                    Vector3 topRight;
                     if (isBeginRegion == false && isCharacterVisible)
                     {
                         isBeginRegion = true;
@@ -302,8 +303,8 @@ namespace TMPro.Examples
 
                 Vector3 bottomLeft = Vector3.zero;
                 Vector3 topLeft = Vector3.zero;
-                Vector3 bottomRight = Vector3.zero;
-                Vector3 topRight = Vector3.zero;
+                _ = Vector3.zero;
+                _ = Vector3.zero;
 
                 float maxAscender = -Mathf.Infinity;
                 float minDescender = Mathf.Infinity;
@@ -324,7 +325,8 @@ namespace TMPro.Examples
                     // Track Max Ascender and Min Descender
                     maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
                     minDescender = Mathf.Min(minDescender, currentCharInfo.descender);
-
+                    Vector3 bottomRight;
+                    Vector3 topRight;
                     if (isBeginRegion == false && isCharacterVisible)
                     {
                         isBeginRegion = true;

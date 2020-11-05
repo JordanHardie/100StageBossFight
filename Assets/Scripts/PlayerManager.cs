@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     public float speed;
     public GameObject bullet;
+    public GameObject barrel;
+    public float angle;
+    float timer;
 
     #region Boundary stuff
     public Camera MainCamera;
@@ -15,6 +19,11 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        if (angle != 0)
+        {
+            barrel.transform.Rotate(0, 0, 80f);
+        }
+
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
         objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y; //extents = size of height / 2
@@ -43,20 +52,18 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.D))
         {
-            if(IsInvoking())
+            timer -= Time.deltaTime;
+
+            if(timer <= 0)
             {
-                CancelInvoke();
-            }
-            
-            else
-            {
-                InvokeRepeating("Shoot", 0f, 1000f);
+                Shoot();
+                timer = 0.1f;
             }
         }
 
         else
         {
-            CancelInvoke();
+            timer = 0.1f;
         }
 
         switch (Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift))
@@ -85,6 +92,23 @@ public class PlayerManager : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bullet, transform.position, transform.rotation);
+        /*
+        float z = barrel.transform.rotation.z;
+        //z = Mathf.Clamp((z <= 180) ? z : -(360 - z), -90, 90);
+
+        //
+        if (z <= 0.6427877f && z >= -0.6427876f)
+        {
+            barrel.transform.Rotate(0, 0, -angle);
+        }
+
+        else
+        {
+            barrel.transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(barrel.transform.eulerAngles.z, -80f, 80f));
+            barrel.transform.Rotate(0, 0, 180f);
+        }
+        Instantiate(bullet, barrel.transform.position, barrel.transform.rotation); 
+        */
     }
+
 }
