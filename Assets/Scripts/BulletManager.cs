@@ -12,33 +12,19 @@ public enum BulletType
 
 public class BulletManager : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
     public GameObject player;
     public float speed;
     public float lifeTime;
     public BulletType bulletType;
-    bool temp = true;
+    //bool temp = true;
     bool temp2 = false;
-
-    private void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     void Update()
     {
-        if(spriteRenderer.isVisible)
-        {
-            //Yay
-        }
-
-        else
-        {
-            //Destroy(gameObject);
-        }
 
         switch (lifeTime <= 0)
         {
+            //Destroy the game object after it's lifespan
             case true:
                 Destroy(gameObject);
                 break;
@@ -57,12 +43,6 @@ public class BulletManager : MonoBehaviour
                         switch (bulletType)
                         {
                             case BulletType.STRAIGHT:
-                                if (temp)
-                                {
-                                    LookAtPlayer();
-                                    temp = false;
-                                }
-
                                 transform.Translate(Vector3.up * speed * Time.deltaTime);
                                 break;
 

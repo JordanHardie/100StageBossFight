@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public float speed;
     public GameObject bullet;
     public GameObject barrel;
+    public Animator animator;
     public float angle;
     float timer;
 
@@ -21,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (angle != 0)
         {
-            barrel.transform.Rotate(0, 0, 80f);
+            //barrel.transform.Rotate(0, 0, 80f);
         }
 
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
@@ -52,7 +53,23 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.D))
         {
+            if (Input.GetKey(KeyCode.A))
+            {
+                animator.SetTrigger("GoingLeft");
+            }
+
+            else if (Input.GetKey(KeyCode.D))
+            {
+                animator.SetTrigger("GoingRight");
+            }
+
+            else
+            {
+                animator.SetTrigger("Neither");
+            }
+
             timer -= Time.deltaTime;
+
 
             if(timer <= 0)
             {
@@ -107,8 +124,16 @@ public class PlayerManager : MonoBehaviour
             barrel.transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(barrel.transform.eulerAngles.z, -80f, 80f));
             barrel.transform.Rotate(0, 0, 180f);
         }
-        Instantiate(bullet, barrel.transform.position, barrel.transform.rotation); 
         */
+
+        /*
+        for (int i = 0; i <= barrels.Length; i++)
+        {
+            GameObject barrel = barrels[i];
+            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+        }
+        */
+        Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
     }
 
 }

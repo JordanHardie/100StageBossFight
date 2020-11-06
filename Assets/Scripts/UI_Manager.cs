@@ -10,7 +10,7 @@ public class UI_Manager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiText;
     int score;
-    double multi;
+    double multi = 1.0;
 
     void Update()
     {
@@ -38,10 +38,12 @@ public class UI_Manager : MonoBehaviour
     void OnEnable()
     {
         GameEvents.OnGraze += OnGraze;
+        GameEvents.OnScoreChange += Score;
     }
 
     private void OnDisable()
     {
         GameEvents.OnGraze -= OnGraze;
+        GameEvents.OnScoreChange -= Score;
     }
 }

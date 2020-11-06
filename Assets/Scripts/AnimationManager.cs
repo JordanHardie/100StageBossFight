@@ -10,13 +10,19 @@ public class AnimationManager : MonoBehaviour
     public float transtionTime;
     public float speed;
     public bool IsBackground = false;
+    public bool IsGameBG;
     #endregion
 
     void Update()
     {
         if(IsBackground)
             MoveBG();
+
+        if(IsGameBG)
+        {
+            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
         }
+    }
 
     //Move background for main menu
     void MoveBG()
