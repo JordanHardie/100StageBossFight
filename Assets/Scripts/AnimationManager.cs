@@ -38,6 +38,11 @@ public class AnimationManager : MonoBehaviour
         transform.Rotate(0, 0, -z);
     }
 
+    public void OnActivate()
+    {
+        OnGameStateChange(GameState.INGAME);
+    }
+
     void OnGameStateChange(GameState gameState)
     {
         StartCoroutine(LoadLevel(gameState));

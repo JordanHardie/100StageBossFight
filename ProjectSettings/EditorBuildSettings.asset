@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/100SBF_MENU.unity
     guid: 6f1bc5bd0fb0b804fab7c658c04f6c89
+  - enabled: 1
+    path: Assets/Scenes/100SBF_INGAME.unity
+    guid: 793ff3b5429d2bb49ae909403060d331
   m_configObjects: {}
