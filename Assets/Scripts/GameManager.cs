@@ -21,7 +21,9 @@ public class GameManager : Singleton<GameManager>
     public GameState gameState;
     public Difficulty difficulty;
 
-
+    //Start in the menu by defualt,
+    //However since this script is accross multiple scences,
+    //It will be set to menu everytime. Will probably fix later somehow.
     void Start()
     {
         gameState = GameState.MENU;

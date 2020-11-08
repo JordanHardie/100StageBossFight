@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public float speed;
+    public GameObject[] points;
+    public GameObject[] barrels;
     public float interval;
     public int health;
+    public int score;
     float fix;
 
     [SerializeField]
     GameObject player;
     [SerializeField]
     GameObject bullet;
-    [SerializeField]
-    GameObject barrel;
+
 
     void Start()
     {
@@ -24,22 +25,25 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LookAtPlayer();
-        Fire();
+        DoStuff();
     }
 
     void Fire()
     {
         interval -= Time.deltaTime;
-
         if (interval <= 0 && health > 0)
         {
-            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            for (int i = 0; i < barrels.Length; i++)
+            {
+                GameObject barrel = barrels[i];
+                Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);  
+            }
             interval = fix;
         }
 
         else if (health <= 0)
         {
+            GameEvents.ReportScoreChange(score);
             Destroy(gameObject);
         }
     }
@@ -59,5 +63,11 @@ public class EnemyManager : MonoBehaviour
             GameEvents.ReportScoreChange(1000);
             Destroy(collision.gameObject);
         }
+    }
+
+    void DoStuff()
+    {
+        LookAtPlayer();
+        Fire();
     }
 }

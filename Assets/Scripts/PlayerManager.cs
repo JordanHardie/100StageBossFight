@@ -7,10 +7,11 @@ public class PlayerManager : MonoBehaviour
 {
     public float speed;
     public GameObject bullet;
-    public GameObject barrel;
+    public GameObject[] barrels;
     public Animator animator;
     public float angle;
-    float timer;
+    public float timer;
+    float fix;
 
     #region Boundary stuff
     public Camera MainCamera;
@@ -20,10 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        if (angle != 0)
-        {
-            //barrel.transform.Rotate(0, 0, 80f);
-        }
+        fix = timer;
 
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
         objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
@@ -68,19 +66,7 @@ public class PlayerManager : MonoBehaviour
                 animator.SetTrigger("Neither");
             }
 
-            timer -= Time.deltaTime;
-
-
-            if(timer <= 0)
-            {
-                Shoot();
-                timer = 0.1f;
-            }
-        }
-
-        else
-        {
-            timer = 0.1f;
+            Shoot();
         }
 
         switch (Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift))
@@ -109,31 +95,16 @@ public class PlayerManager : MonoBehaviour
 
     void Shoot()
     {
-        /*
-        float z = barrel.transform.rotation.z;
-        //z = Mathf.Clamp((z <= 180) ? z : -(360 - z), -90, 90);
-
-        //
-        if (z <= 0.6427877f && z >= -0.6427876f)
+        timer -= Time.deltaTime;
+        if (timer <= 0)
         {
-            barrel.transform.Rotate(0, 0, -angle);
+            for (int i = 0; i < barrels.Length; i++)
+            {
+                GameObject barrel = barrels[i];
+                Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            }
+            timer = fix;
         }
-
-        else
-        {
-            barrel.transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(barrel.transform.eulerAngles.z, -80f, 80f));
-            barrel.transform.Rotate(0, 0, 180f);
-        }
-        */
-
-        /*
-        for (int i = 0; i <= barrels.Length; i++)
-        {
-            GameObject barrel = barrels[i];
-            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
-        }
-        */
-        Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
     }
 
 }
