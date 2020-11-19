@@ -1926,7 +1926,7 @@ MonoBehaviour:
   - {fileID: 1238154252}
   player: {fileID: 638312302}
   bullet: {fileID: 3730332848943305461, guid: ba76cb374c4cd2c428e2644d5c7dba18, type: 3}
-  interval: 0.7
+  interval: 0.5
   health: 200
   score: 100000
   angle: 10
@@ -2814,7 +2814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 2
-  difficulty: 0
+  difficulty: 4
 --- !u!1 &1371724056
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class UI_Manager : MonoBehaviour
     public TextMeshProUGUI multiText;
     public GameObject panel;
     public TextMeshProUGUI[] scores;
+    string rank = "S++";
+    float destruction = 100f;
     int score;
     double multi = 1.0;
 
@@ -52,24 +54,84 @@ public class UI_Manager : MonoBehaviour
             }
 
             panel.SetActive(true);
-           
 
-            for (int i = 0; i < scores.Length; i++)
-            {
-                
-                switch(i)
-                {
-                    case 0:
-                        scores[i].text = score.ToString();
-                        break;
-                }
-            }
+            StartCoroutine(ScoreReveal());
         }
     }
 
-    IEnumerator scoreReveal()
+    IEnumerator ScoreReveal()
     {
-        yield return new WaitForSecondsRealtime(5f);
+        for (int i = 0; i < scores.Length; i++)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            TextMeshProUGUI _score = scores[i];
+            switch (i)
+            {
+                #region Case 0
+                case 0:
+                    _score.text = score.ToString();
+                    break;
+                #endregion
+
+                #region Case 1
+                case 1:
+                    _score.text = multi + "x";
+                    break;
+                #endregion
+
+                #region Case 2
+                case 2:
+                    Difficulty difficulty = GameManager.Instance.difficulty;
+
+                    switch(difficulty)
+                    {
+                        case Difficulty.EASY:
+                            _score.text = "EASY [1.5x]";
+                            break;
+
+                        case Difficulty.MEDIUM:
+                            _score.text = "MEDIUM [3x]";
+                            break;
+
+                        case Difficulty.HARD:
+                            _score.text = "HARD [5x]";
+                            break;
+
+                        case Difficulty.INSANE:
+                            _score.text = "INSANE [8x]";
+                            break;
+
+                        case Difficulty.HEAVEN:
+                            _score.text = "HEAVEN [10x]";
+                            break;
+                    }
+
+                    break;
+                #endregion
+
+                #region Case 3
+                case 3:
+                    _score.text = destruction + "%";
+                    break;
+                #endregion
+
+                #region Case 4
+                case 4:
+                    _score.text = rank;
+                    break;
+                #endregion
+
+                #region Case 5
+                case 5:
+                    float step = (destruction * 2) / 100;
+                    double step1 = score * multi * step; //* Ranking multi
+                    string result = step1.ToString("0#,###0");
+
+                    _score.text = result;
+                    break;
+                #endregion
+            }
+        }
     }
 
     void OnEnable()
