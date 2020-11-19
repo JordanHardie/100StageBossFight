@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 5
+  speed: 8
   lifeTime: 2
   bulletType: 0
 --- !u!58 &-6125828622199741542

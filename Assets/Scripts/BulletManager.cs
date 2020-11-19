@@ -15,13 +15,29 @@ public class BulletManager : MonoBehaviour
     public GameObject player;
     public float speed;
     public float lifeTime;
+
+    [Header("Zig zag Options")]
+    public float timer;
+    public float angle;
+    float setTimer;
+
+    [Header("Bullet type")]
     public BulletType bulletType;
-    //bool temp = true;
+    bool temp = true;
     bool temp2 = false;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        setTimer = timer;
+        if(bulletType == BulletType.ZIGZAG)
+        {
+            transform.Rotate(0, 0, angle);
+        }
+    }
 
     void Update()
     {
-
         switch (lifeTime <= 0)
         {
             //Destroy the game object after it's lifespan
@@ -42,10 +58,13 @@ public class BulletManager : MonoBehaviour
                     case false:
                         switch (bulletType)
                         {
+                            #region Straight Bullet
                             case BulletType.STRAIGHT:
                                 transform.Translate(Vector3.up * speed * Time.deltaTime);
                                 break;
+                            #endregion
 
+                            #region Homing Bullet
                             case BulletType.HOMING:
                                 if(transform.position.y <= player.transform.position.y)
                                 {
@@ -64,13 +83,36 @@ public class BulletManager : MonoBehaviour
                                     transform.Translate(Vector3.up * speed * Time.deltaTime);
                                 }
                                 break;
+                            #endregion
+
+                            #region Zig Zag Bullet
+                            case BulletType.ZIGZAG:
+                                timer -= Time.deltaTime;
+                                transform.Translate(Vector3.up * speed * Time.deltaTime);
+
+                                if (timer <= 0)
+                                {
+                                    temp = !temp;
+                                    if (temp)
+                                    {
+                                        transform.Rotate(0, 0, angle * 2);
+                                    }
+
+                                    else
+                                    {
+                                        transform.Rotate(0, 0, -angle * 2);   
+                                    }
+
+                                    timer = setTimer;
+                                    
+                                }
+                                break;
+                                #endregion
                         }
                         break;
-
                 }
                 break;
-        }
-        
+        }   
     }
 
     void LookAtPlayer()

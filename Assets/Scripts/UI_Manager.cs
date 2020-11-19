@@ -7,8 +7,12 @@ using System;
 
 public class UI_Manager : MonoBehaviour
 {
+    public int lives;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiText;
+    public GameObject panel;
+    public TextMeshProUGUI[] scores;
     int score;
     double multi = 1.0;
 
@@ -30,13 +34,47 @@ public class UI_Manager : MonoBehaviour
     {
         if (isGrazing)
         {
-            multi += 0.1f;
-            multi = Math.Round(multi, 3);
+            multi += 0.05f;
+            multi = Math.Round(multi, 4);
         }
+    }
+
+    void GameOver(bool isHit)
+    {
+        if(isHit && lives < 1)
+        {
+            Time.timeScale = 0;
+
+            for (int i = 0; i < scores.Length; i++)
+            {
+                TextMeshProUGUI score = scores[i];
+                score.text = "";
+            }
+
+            panel.SetActive(true);
+           
+
+            for (int i = 0; i < scores.Length; i++)
+            {
+                
+                switch(i)
+                {
+                    case 0:
+                        scores[i].text = score.ToString();
+                        break;
+                }
+            }
+        }
+    }
+
+    IEnumerator scoreReveal()
+    {
+        yield return new WaitForSecondsRealtime(5f);
     }
 
     void OnEnable()
     {
+        GameEvents.OnHit += GameOver;
         GameEvents.OnGraze += OnGraze;
         GameEvents.OnScoreChange += Score;
     }

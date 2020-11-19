@@ -1,51 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public GameObject[] points;
+    #region Variables
     public GameObject[] barrels;
+    public GameObject player;
+    public GameObject bullet;
+
     public float interval;
     public int health;
     public int score;
+
+    [Header("Spinning barrel")]
+    public float angle;
+    public float rate;
+    public float rotInterval;
+
     float fix;
-
-    [SerializeField]
-    GameObject player;
-    [SerializeField]
-    GameObject bullet;
-
+    float rotFix;
+    float rateFix;
+    #endregion
 
     void Start()
     {
         fix = interval;
+        rotFix = rotInterval;
+        rateFix = rate;
     }
 
-    // Update is called once per frame
     void Update()
     {
         DoStuff();
     }
 
-    void Fire()
+    void DoStuff()
     {
-        interval -= Time.deltaTime;
-        if (interval <= 0 && health > 0)
-        {
-            for (int i = 0; i < barrels.Length; i++)
-            {
-                GameObject barrel = barrels[i];
-                Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);  
-            }
-            interval = fix;
-        }
-
-        else if (health <= 0)
+        if (health <= 0)
         {
             GameEvents.ReportScoreChange(score);
             Destroy(gameObject);
         }
+
+        LookAtPlayer();
+        Fire();
+    }
+
+    void Fire()
+    {
+        TimerFunction(rate, 0);
+        TimerFunction(rotInterval, 1);
+        TimerFunction(interval, 2);
     }
 
     void LookAtPlayer()
@@ -57,7 +61,7 @@ public class EnemyManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("PlayerBullet"))
+        if (collision.CompareTag("PlayerBullet"))
         {
             health -= 1;
             GameEvents.ReportScoreChange(1000);
@@ -65,9 +69,58 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void DoStuff()
+    void TimerFunction(float timer, int val)
     {
-        LookAtPlayer();
-        Fire();
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            for (int i = 0; i < barrels.Length; i++)
+            {
+                GameObject barrel = barrels[i];
+
+                if (val == 0 && barrel.CompareTag("Spin"))
+                    Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+
+                if (val == 1 && barrel.CompareTag("Spin"))
+                    barrel.transform.Rotate(0, 0, angle);
+
+                if (val == 2)
+                        Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            }
+
+            switch (val)
+            {
+                case 0:
+                    rate = rateFix;
+                    break;
+
+                case 1:
+                    rotInterval = rotFix;
+                    break;
+
+                case 2:
+                    interval = fix;
+                    break;
+            }
+        }
+
+        else
+        {
+            switch (val)
+            {
+                case 0:
+                    rate = timer;
+                    break;
+
+                case 1:
+                    rotInterval = timer;
+                    break;
+
+                case 2:
+                    interval = timer;
+                    break;
+            }
+        }
     }
 }

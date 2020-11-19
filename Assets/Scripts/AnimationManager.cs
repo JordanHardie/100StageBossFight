@@ -41,6 +41,7 @@ public class AnimationManager : MonoBehaviour
     public void OnActivate()
     {
         OnGameStateChange(GameState.INGAME);
+        GameEvents.ReportGameStateChange(GameState.INGAME);
     }
 
     void OnGameStateChange(GameState gameState)
