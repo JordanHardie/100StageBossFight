@@ -115,10 +115,28 @@ public class BulletManager : MonoBehaviour
         }   
     }
 
+    void DestroyThis(GameState gameState)
+    {
+        if(gameState == GameState.GAMEOVER)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void LookAtPlayer()
     {
         Vector3 relative = transform.InverseTransformPoint(player.transform.position);
         float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
         transform.Rotate(0, 0, -angle);
+    }
+
+    void OnEnable()
+    {
+        GameEvents.OnGameStateChange += DestroyThis;
+    }
+
+    void OnDisable()
+    {
+        GameEvents.OnGameStateChange -= DestroyThis;
     }
 }

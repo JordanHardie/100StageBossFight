@@ -123,4 +123,22 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+
+    void DestroyThis(GameState gameState)
+    {
+        if (gameState == GameState.GAMEOVER)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnEnable()
+    {
+        GameEvents.OnGameStateChange += DestroyThis;
+    }
+
+    void OnDisable()
+    {
+        GameEvents.OnGameStateChange -= DestroyThis;
+    }
 }

@@ -45,8 +45,6 @@ public class UI_Manager : MonoBehaviour
     {
         if(isHit && lives < 1)
         {
-            Time.timeScale = 0;
-
             for (int i = 0; i < scores.Length; i++)
             {
                 TextMeshProUGUI score = scores[i];
@@ -69,7 +67,7 @@ public class UI_Manager : MonoBehaviour
             {
                 #region Case 0
                 case 0:
-                    _score.text = score.ToString();
+                    _score.text = score.ToString("0#,###0");
                     break;
                 #endregion
 
@@ -123,6 +121,7 @@ public class UI_Manager : MonoBehaviour
 
                 #region Case 5
                 case 5:
+                    yield return new WaitForSecondsRealtime(0.5f);
                     float step = (destruction * 2) / 100;
                     double step1 = score * multi * step; //* Ranking multi
                     string result = step1.ToString("0#,###0");
