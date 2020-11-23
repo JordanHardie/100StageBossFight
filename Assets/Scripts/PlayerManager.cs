@@ -115,6 +115,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    #region Event listening
     void OnEnable()
     {
         GameEvents.OnGameStateChange += DestroyThis;
@@ -124,5 +125,5 @@ public class PlayerManager : MonoBehaviour
     {
         GameEvents.OnGameStateChange -= DestroyThis;
     }
-
+    #endregion
 }

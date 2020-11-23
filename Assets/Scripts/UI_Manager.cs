@@ -7,16 +7,23 @@ using System;
 
 public class UI_Manager : MonoBehaviour
 {
+    #region Variables
     public int lives;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiText;
-    public GameObject panel;
     public TextMeshProUGUI[] scores;
+    public GameObject panel;
+
+    [Header("Options settings")]
+    public Slider volumerSlider;
+    public TMP_InputField speedVal;
+
     string rank = "S++";
     float destruction = 100f;
     int score;
     double multi = 1.0;
+    #endregion
 
     void Update()
     {
@@ -26,7 +33,9 @@ public class UI_Manager : MonoBehaviour
 
     void Score(int val)
     {
+        // Take the score and multiply it by the current multiplier
         double math = val * multi;
+        //Round it to a whole number
         math = Math.Round(math);
         int result = (int)math;
         score += result;
@@ -133,6 +142,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    #region Event listening
     void OnEnable()
     {
         GameEvents.OnHit += GameOver;
@@ -145,4 +155,5 @@ public class UI_Manager : MonoBehaviour
         GameEvents.OnGraze -= OnGraze;
         GameEvents.OnScoreChange -= Score;
     }
+    #endregion
 }

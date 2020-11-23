@@ -12,6 +12,7 @@ public enum BulletType
 
 public class BulletManager : MonoBehaviour
 {
+    #region Variables
     public GameObject player;
     public float speed;
     public float lifeTime;
@@ -25,6 +26,7 @@ public class BulletManager : MonoBehaviour
     public BulletType bulletType;
     bool temp = true;
     bool temp2 = false;
+    #endregion
 
     void Start()
     {
@@ -115,6 +117,7 @@ public class BulletManager : MonoBehaviour
         }   
     }
 
+    // On game over destroy all bullets in scene
     void DestroyThis(GameState gameState)
     {
         if(gameState == GameState.GAMEOVER)
@@ -130,6 +133,7 @@ public class BulletManager : MonoBehaviour
         transform.Rotate(0, 0, -angle);
     }
 
+    #region Event listening
     void OnEnable()
     {
         GameEvents.OnGameStateChange += DestroyThis;
@@ -139,4 +143,5 @@ public class BulletManager : MonoBehaviour
     {
         GameEvents.OnGameStateChange -= DestroyThis;
     }
+    #endregion
 }

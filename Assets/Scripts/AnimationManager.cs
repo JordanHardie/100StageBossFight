@@ -66,6 +66,7 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
+    #region Event listening
     void OnEnable()
     {
         GameEvents.OnGameStateChange += OnGameStateChange;
@@ -75,4 +76,5 @@ public class AnimationManager : MonoBehaviour
     {
         GameEvents.OnGameStateChange -= OnGameStateChange;
     }
+    #endregion
 }

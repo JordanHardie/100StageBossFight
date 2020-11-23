@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
     #region Variables
     public GameObject[] barrels;
+    public GameObject[] points;
     public GameObject player;
     public GameObject bullet;
 
+    public float speed;
     public float interval;
     public int health;
     public int score;
@@ -16,6 +19,8 @@ public class EnemyManager : MonoBehaviour
     public float rate;
     public float rotInterval;
 
+    GameObject target;
+    float step;
     float fix;
     float rotFix;
     float rateFix;
@@ -23,9 +28,11 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        int i = Random.Range(0, points.Length);
         fix = interval;
         rotFix = rotInterval;
         rateFix = rate;
+        target = points[i];
     }
 
     void Update()
@@ -41,6 +48,7 @@ public class EnemyManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Move(target);
         LookAtPlayer();
         Fire();
     }
@@ -50,6 +58,18 @@ public class EnemyManager : MonoBehaviour
         TimerFunction(rate, 0);
         TimerFunction(rotInterval, 1);
         TimerFunction(interval, 2);
+    }
+
+    void Move(GameObject _target)
+    {
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
+
+        if (Vector3.Distance(transform.position, _target.transform.position) < 0.001f)
+        {
+            int i = Random.Range(0, points.Length);
+            target = points[i];
+        }
     }
 
     void LookAtPlayer()
@@ -132,6 +152,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    #region Event listening
     void OnEnable()
     {
         GameEvents.OnGameStateChange += DestroyThis;
@@ -141,4 +162,5 @@ public class EnemyManager : MonoBehaviour
     {
         GameEvents.OnGameStateChange -= DestroyThis;
     }
+    #endregion
 }

@@ -1,4 +1,6 @@
-﻿public enum GameState
+﻿using UnityEngine;
+
+public enum GameState
 {
     TITLE,
     MENU,
@@ -30,8 +32,20 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    #region Event listening
     void OnEnable()
     {
         GameEvents.OnHit += Hit;
     }
+
+    private void OnDisable()
+    {
+        GameEvents.OnHit -= Hit;
+    }
+    #endregion
 }
