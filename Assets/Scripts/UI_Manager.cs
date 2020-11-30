@@ -5,19 +5,20 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class UI_Manager : MonoBehaviour
+public class UI_Manager : Singleton<UI_Manager>
 {
     #region Variables
-    public int lives;
-
+    [Header("Text assignment")]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiText;
+    public TextMeshProUGUI livesText;
     public TextMeshProUGUI[] scores;
-    public GameObject panel;
 
     [Header("Options settings")]
+    public GameObject panel;
     public Slider volumerSlider;
     public TMP_InputField speedVal;
+    GameManager GM;
 
     string rank = "S++";
     float destruction = 100f;
@@ -25,9 +26,15 @@ public class UI_Manager : MonoBehaviour
     double multi = 1.0;
     #endregion
 
+    void Start()
+    {
+        GM = GameManager.Instance;
+        livesText.text = "Lives: " + GM.lives;
+    }
+
     void Update()
     {
-        scoreText.text = score.ToString();
+        scoreText.text = score.ToString("0#,###0");
         multiText.text = multi + "x";
     }
 
@@ -50,20 +57,26 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    void GameOver(bool isHit)
+    // Update lives text
+    public void Hit()
     {
-        if(isHit && lives < 1)
+        livesText.text = "Lives: " + GM.lives;
+    }
+
+    public void Death()
+    {
+        // Set all score values to be blank
+        for (int i = 0; i < scores.Length; i++)
         {
-            for (int i = 0; i < scores.Length; i++)
-            {
-                TextMeshProUGUI score = scores[i];
-                score.text = "";
-            }
-
-            panel.SetActive(true);
-
-            StartCoroutine(ScoreReveal());
+            TextMeshProUGUI score = scores[i];
+            score.text = "";
         }
+
+        // Activate game over panel
+        panel.SetActive(true);
+
+        // Reveal scores
+        StartCoroutine(ScoreReveal());
     }
 
     IEnumerator ScoreReveal()
@@ -145,12 +158,11 @@ public class UI_Manager : MonoBehaviour
     #region Event listening
     void OnEnable()
     {
-        GameEvents.OnHit += GameOver;
         GameEvents.OnGraze += OnGraze;
         GameEvents.OnScoreChange += Score;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         GameEvents.OnGraze -= OnGraze;
         GameEvents.OnScoreChange -= Score;

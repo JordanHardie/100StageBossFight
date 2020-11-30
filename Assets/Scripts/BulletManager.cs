@@ -13,17 +13,20 @@ public enum BulletType
 public class BulletManager : MonoBehaviour
 {
     #region Variables
+    [Header("Refrences")]
+    public GameObject point;
     public GameObject player;
     public float speed;
     public float lifeTime;
+
+    [Header("Bullet type")]
+    public BulletType bulletType;
 
     [Header("Zig zag Options")]
     public float timer;
     public float angle;
     float setTimer;
 
-    [Header("Bullet type")]
-    public BulletType bulletType;
     bool temp = true;
     bool temp2 = false;
     #endregion
@@ -133,15 +136,26 @@ public class BulletManager : MonoBehaviour
         transform.Rotate(0, 0, -angle);
     }
 
+    void IntoPoint(bool _hit)
+    {
+        if(_hit && CompareTag("Bullet"))
+        {
+            Instantiate(point, transform.position, new Quaternion(0, 0, 0, 0));
+            Destroy(gameObject);
+        }
+    }
+
     #region Event listening
     void OnEnable()
     {
         GameEvents.OnGameStateChange += DestroyThis;
+        GameEvents.OnHit += IntoPoint;
     }
 
     void OnDisable()
     {
         GameEvents.OnGameStateChange -= DestroyThis;
+        GameEvents.OnHit -= IntoPoint;
     }
     #endregion
 }

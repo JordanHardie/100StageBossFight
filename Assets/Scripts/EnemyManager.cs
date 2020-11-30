@@ -4,15 +4,18 @@ using UnityEngine.AI;
 public class EnemyManager : MonoBehaviour
 {
     #region Variables
+    [Header("References")]
     public GameObject[] barrels;
     public GameObject[] points;
     public GameObject player;
     public GameObject bullet;
 
+    [Header("Ship values")]
     public float speed;
     public float interval;
     public int health;
-    public int score;
+    public int hitScore;
+    public int defeatScore;
 
     [Header("Spinning barrel")]
     public float angle;
@@ -20,7 +23,6 @@ public class EnemyManager : MonoBehaviour
     public float rotInterval;
 
     GameObject target;
-    float step;
     float fix;
     float rotFix;
     float rateFix;
@@ -28,7 +30,10 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        // Assign a random point to move towards
         int i = Random.Range(0, points.Length);
+
+        // For reseting timers
         fix = interval;
         rotFix = rotInterval;
         rateFix = rate;
@@ -44,7 +49,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (health <= 0)
         {
-            GameEvents.ReportScoreChange(score);
+            GameEvents.ReportScoreChange(defeatScore);
             Destroy(gameObject);
         }
 
@@ -84,7 +89,7 @@ public class EnemyManager : MonoBehaviour
         if (collision.CompareTag("PlayerBullet"))
         {
             health -= 1;
-            GameEvents.ReportScoreChange(1000);
+            GameEvents.ReportScoreChange(hitScore);
             Destroy(collision.gameObject);
         }
     }

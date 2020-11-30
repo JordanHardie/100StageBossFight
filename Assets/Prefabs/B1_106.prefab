@@ -101,6 +101,8 @@ MonoBehaviour:
   speed: 8
   lifeTime: 2
   bulletType: 0
+  timer: 0
+  angle: 0
 --- !u!58 &-6125828622199741542
 CircleCollider2D:
   m_ObjectHideFlags: 0

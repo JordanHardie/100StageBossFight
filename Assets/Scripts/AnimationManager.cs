@@ -19,9 +19,8 @@ public class AnimationManager : MonoBehaviour
             MoveBG();
 
         if(IsGameBG)
-        {
             transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
-        }
+        
     }
 
     //Move background for main menu
@@ -49,6 +48,7 @@ public class AnimationManager : MonoBehaviour
         StartCoroutine(LoadLevel(gameState));
     }
 
+    //Transtion
     IEnumerator LoadLevel(GameState gameState)
     {
         transition.SetTrigger("Start");
