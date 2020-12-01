@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float speed;
+    #region Variables
     public GameObject bullet;
     public GameObject[] barrels;
     public Animator animator;
     public float angle;
     public float timer;
+    public float speed;
     float fix;
+    #endregion
 
     #region Boundary stuff
     public Camera MainCamera;
@@ -37,9 +39,20 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
+    // Movement in fixed update so collisions are properly dectected
     void FixedUpdate()
     {
         Moving();
+    }
+
+    // Check when we hit a bullet
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            GameEvents.ReportHit(true);
+            Destroy(collision.gameObject);
+        }
     }
 
     //Chuck it all into a function to make it easier to read I suppose
@@ -81,15 +94,6 @@ public class PlayerManager : MonoBehaviour
                 transform.Translate(Vector3.right * h * speed * Time.deltaTime);
                 transform.Translate(Vector3.up * v * speed * Time.deltaTime);
                 break;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            GameEvents.ReportHit(true);
-            Destroy(collision.gameObject);
         }
     }
 

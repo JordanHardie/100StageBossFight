@@ -26,14 +26,6 @@ public class GameManager : Singleton<GameManager>
     public Difficulty difficulty;
     public int lives;
 
-    void Update()
-    {
-        if (lives < 1)
-        {
-            Death();
-        }
-    }
-
     // SHI-NE SCUM!
     void Death()
     {
@@ -44,10 +36,23 @@ public class GameManager : Singleton<GameManager>
 
     void Hit(bool _hit)
     {
-        if(_hit && lives >= 1)
+        if(_hit && lives > 1)
         {
             lives -= 1;
             UI_Manager.Instance.Hit();  
+        }
+
+        else
+        {
+            Death();
+        }
+    }
+
+    void OnGraze(bool isGrazing)
+    {
+        if (isGrazing)
+        {
+            UI_Manager.Instance.Graze();
         }
     }
 
