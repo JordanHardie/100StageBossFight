@@ -66,11 +66,13 @@ public class GameManager : Singleton<GameManager>
     void OnEnable()
     {
         GameEvents.OnHit += Hit;
+        GameEvents.OnGraze += OnGraze;
     }
 
     void OnDisable()
     {
         GameEvents.OnHit -= Hit;
+        GameEvents.OnGraze -= OnGraze;
     }
     #endregion
 }
