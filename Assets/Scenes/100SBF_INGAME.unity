@@ -3570,7 +3570,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2424553518018739129, guid: 1874005325594f9438c14311c110508d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3681,7 +3681,7 @@ MonoBehaviour:
   - {fileID: 1801205331}
   player: {fileID: 638312302}
   bullet: {fileID: 3730332848943305461, guid: ba76cb374c4cd2c428e2644d5c7dba18, type: 3}
-  speed: 0.5
+  speed: 0
   interval: 0.5
   health: 1000
   hitScore: 1000
