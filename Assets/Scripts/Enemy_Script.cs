@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
-public class EnemyManager : MonoBehaviour
+public class Enemy_Script : MonoBehaviour
 {
     #region Variables
     [Header("References")]
+    // Public Variables
     public GameObject[] barrels;
-    public GameObject[] points;
-    public GameObject player;
     public GameObject bullet;
 
     [Header("Ship values")]
@@ -21,7 +21,10 @@ public class EnemyManager : MonoBehaviour
     public float rate;
     public float rotInterval;
 
-    GameObject target;
+    // Private Variables
+    GameObject player;
+    public List<Vector3> points;
+    Vector3 target;
     float fix;
     float rotFix;
     float rateFix;
@@ -29,14 +32,30 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        player = PlayerManager.Instance.gameObject;
+        // Creates a list of movement points
+        float start_x = -7;
+        float start_y = 4;
+
+        for(int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                points.Add(new Vector3(start_x, start_y, 0));
+                start_y -= 2;
+            }
+            start_x += 3.5f;
+            start_y = 4;
+        }
+
         // Assign a random point to move towards
-        int i = Random.Range(0, points.Length);
+        int x = Random.Range(0, points.Count);
 
         // For reseting timers
         fix = interval;
         rotFix = rotInterval;
         rateFix = rate;
-        target = points[i];
+        target = points[x];
     }
 
     void Update()
@@ -46,13 +65,7 @@ public class EnemyManager : MonoBehaviour
 
     void DoStuff()
     {
-        if (health <= 0)
-        {
-            GameEvents.ReportScoreChange(defeatScore);
-            Destroy(gameObject);
-        }
-
-        Move(target);
+        //Move(target);
         LookAtPlayer();
         Fire();
     }
@@ -64,14 +77,14 @@ public class EnemyManager : MonoBehaviour
         TimerFunction(interval, 2);
     }
 
-    void Move(GameObject _target)
+    void Move(Vector3 _target)
     {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, _target, step);
 
-        if (Vector3.Distance(transform.position, _target.transform.position) < 0.001f)
+        if (Vector3.Distance(transform.position, _target) < 0.001f)
         {
-            int i = Random.Range(0, points.Length);
+            int i = Random.Range(0, points.Count);
             target = points[i];
         }
     }
@@ -81,16 +94,6 @@ public class EnemyManager : MonoBehaviour
         Vector3 relative = transform.InverseTransformPoint(player.transform.position);
         float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
         transform.Rotate(0, 0, -angle);
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("PlayerBullet"))
-        {
-            health -= 1;
-            GameEvents.ReportScoreChange(hitScore);
-            Destroy(collision.gameObject);
-        }
     }
 
     void TimerFunction(float timer, int val)
@@ -107,10 +110,15 @@ public class EnemyManager : MonoBehaviour
                     Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
 
                 if (val == 1 && barrel.CompareTag("Spin"))
+                {
                     barrel.transform.Rotate(0, 0, angle);
+                }
+                        
 
                 if (val == 2)
-                        Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+                {
+                    Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+                }
             }
 
             switch (val)
@@ -153,6 +161,23 @@ public class EnemyManager : MonoBehaviour
         if (gameState == GameState.GAMEOVER)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (health <= 0)
+        {
+            GameEvents.ReportScoreChange(defeatScore);
+            Destroy(gameObject);
+        }
+
+        // If the enemy collides with the players bullet
+        else if (collision.CompareTag("PlayerBullet"))
+        {
+            health -= 1;
+            GameEvents.ReportScoreChange(hitScore);
+            Destroy(collision.gameObject);
         }
     }
 

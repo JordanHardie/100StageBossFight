@@ -14,10 +14,11 @@ public class BulletManager : MonoBehaviour
 {
     #region Variables
     [Header("Refrences")]
-    public GameObject point;
     public GameObject player;
-    public float speed;
+    public GameObject point;
     public float lifeTime;
+    public float speed;
+    public int damage;
 
     [Header("Bullet type")]
     public BulletType bulletType;
@@ -120,15 +121,6 @@ public class BulletManager : MonoBehaviour
         }   
     }
 
-    // On game over destroy all bullets in scene
-    void DestroyThis(GameState gameState)
-    {
-        if(gameState == GameState.GAMEOVER)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     void LookAtPlayer()
     {
         Vector3 relative = transform.InverseTransformPoint(player.transform.position);
@@ -141,6 +133,15 @@ public class BulletManager : MonoBehaviour
         if(_hit && CompareTag("Bullet"))
         {
             Instantiate(point, transform.position, new Quaternion(0, 0, 0, 0));
+            Destroy(gameObject);
+        }
+    }
+
+    // On game over destroy all bullets in scene
+    void DestroyThis(GameState gameState)
+    {
+        if (gameState == GameState.GAMEOVER)
+        {
             Destroy(gameObject);
         }
     }

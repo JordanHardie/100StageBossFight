@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - PlayerBullet
   - Spin
+  - Point
   layers:
   - Default
   - TransparentFX

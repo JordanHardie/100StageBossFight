@@ -12,6 +12,7 @@ public class UI_Manager : Singleton<UI_Manager>
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiText;
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI timertext;
     public TextMeshProUGUI[] scores;
 
     [Header("Options settings")]
@@ -19,6 +20,7 @@ public class UI_Manager : Singleton<UI_Manager>
     public Slider volumerSlider;
     public TMP_InputField speedVal;
     GameManager GM;
+    Level_Manager LM;
 
     string rank = "S++";
     float destruction = 100f;
@@ -29,11 +31,13 @@ public class UI_Manager : Singleton<UI_Manager>
     void Start()
     {
         GM = GameManager.Instance;
+        LM = Level_Manager.Instance;
         livesText.text = "Lives: " + GM.lives;
     }
 
     void Update()
     {
+        timertext.text = LM.timerText;
         scoreText.text = score.ToString("0#,###0");
         multiText.text = multi + "x";
     }
@@ -52,6 +56,8 @@ public class UI_Manager : Singleton<UI_Manager>
     // Set's scores text active I.E. revealing them
     IEnumerator ScoreReveal()
     {
+        Difficulty difficulty = GameManager.Instance.difficulty;
+
         for (int i = 0; i < scores.Length; i++)
         {
 
@@ -61,23 +67,22 @@ public class UI_Manager : Singleton<UI_Manager>
             {
                 #region Case 0
                 case 0:
-                    _score.text = score.ToString("0#,###0");
                     //print("0 Ran");
+                    _score.text = score.ToString("0#,###0");
                     break;
                 #endregion
 
                 #region Case 1
                 case 1:
-                    _score.text = multi + "x";
                     //print("1 Ran");
+                    _score.text = multi + "x";
                     break;
                 #endregion
 
                 #region Case 2
                 case 2:
-                    Difficulty difficulty = GameManager.Instance.difficulty;
-
-                    switch(difficulty)
+                    //print("2 Ran");
+                    switch (difficulty)
                     {
                         case Difficulty.EASY:
                             _score.text = "EASY [1.5x]";
@@ -99,31 +104,52 @@ public class UI_Manager : Singleton<UI_Manager>
                             _score.text = "HEAVEN [10x]";
                             break;
                     }
-                    //print("2 Ran");
-
                     break;
                 #endregion
 
                 #region Case 3
                 case 3:
-                    _score.text = destruction + "%";
                     //print("3 Ran");
+                    _score.text = destruction + "%";
                     break;
                 #endregion
 
                 #region Case 4
                 case 4:
-                    _score.text = rank;
                     //print("4 Ran");
+                    _score.text = rank;
                     break;
                 #endregion
 
                 #region Case 5
                 case 5:
                     //print("5 Ran");
+                    float rankVal = 0;
+                    switch(difficulty)
+                    {
+                        case Difficulty.EASY:
+                            rankVal = 1.5f;
+                            break;
+
+                        case Difficulty.MEDIUM:
+                            rankVal = 3f;
+                            break;
+
+                        case Difficulty.HARD:
+                            rankVal = 5f;
+                            break;
+
+                        case Difficulty.INSANE:
+                            rankVal = 8f;
+                            break;
+
+                        case Difficulty.HEAVEN:
+                            rankVal = 10f;
+                            break;
+                    }
                     yield return new WaitForSecondsRealtime(0.5f);
                     float step = (destruction * 2) / 100;
-                    double step1 = score * multi * step; //* Ranking multi
+                    double step1 = score * multi * step * rankVal;
                     string result = step1.ToString("0#,###0");
 
                     _score.text = result;
