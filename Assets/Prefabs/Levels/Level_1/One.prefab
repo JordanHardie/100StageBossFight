@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6630092351133689102}
   - component: {fileID: 6630092351133689201}
   - component: {fileID: 6630092351133689100}
+  - component: {fileID: 7352490501307158102}
   m_Layer: 0
   m_Name: One
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7945901444079236628, guid: a48eb7bb57424b2468b141432d85d262,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,6 +103,8 @@ MonoBehaviour:
   - {fileID: 6630092352187139442}
   - {fileID: 6630092351306494158}
   bullet: {fileID: 3730332848943305461, guid: ba76cb374c4cd2c428e2644d5c7dba18, type: 3}
+  explosion: {fileID: 2838557995644968441, guid: 198eba3d95d63454c9ac8ae488ed0541,
+    type: 3}
   speed: 1
   interval: 0.5
   health: 100
@@ -110,6 +113,7 @@ MonoBehaviour:
   angle: 3
   rate: 0.1
   rotInterval: 0.1
+  scale: {x: 3, y: 3, z: 1}
   points: []
 --- !u!61 &6630092351133689100
 BoxCollider2D:
@@ -137,6 +141,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 0.91}
   m_EdgeRadius: 0
+--- !u!95 &7352490501307158102
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630092351133689200}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6630092351306494158
 GameObject:
   m_ObjectHideFlags: 0

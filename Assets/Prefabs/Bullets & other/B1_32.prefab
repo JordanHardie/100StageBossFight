@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3730332848943305459}
   - component: {fileID: 3730332848943305460}
   - component: {fileID: 624095854}
-  - component: {fileID: 624095855}
+  - component: {fileID: -5984764125869642532}
   m_Layer: 0
   m_Name: B1_32
   m_TagString: Bullet
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7995165314498290883, guid: e7abc9ce45f91c742a4b81b54b97021c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,10 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67a8050188706e4dbbe153b0f214c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  point: {fileID: 6683911685189120676, guid: 367690fba86d3aa4f9691c29ca29ae74, type: 3}
   player: {fileID: 0}
+  point: {fileID: 6683911685189120676, guid: 367690fba86d3aa4f9691c29ca29ae74, type: 3}
+  lifeTime: 2.5
   speed: 4
-  lifeTime: 2
+  damage: 0
   bulletType: 0
   timer: 0.5
   angle: 45
@@ -130,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11992099, y: 0.1297187}
   m_EdgeRadius: 0
---- !u!50 &624095855
+--- !u!50 &-5984764125869642532
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

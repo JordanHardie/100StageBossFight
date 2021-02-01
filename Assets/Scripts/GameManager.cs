@@ -26,12 +26,10 @@ public class GameManager : Singleton<GameManager>
     public Difficulty difficulty;
     public int lives;
 
-    // SHI-NE SCUM!
     void Death()
     {
-        UI_Manager.Instance.Death();
-        gameState = GameState.GAMEOVER;
-        GameEvents.ReportGameStateChange(gameState);
+        UI_Manager.Instance.Game_over(0);
+        GameEvents.ReportGameStateChange(GameState.GAMEOVER);
     }
 
     void Hit(bool _hit)
@@ -46,6 +44,11 @@ public class GameManager : Singleton<GameManager>
         {
             Death();
         }
+    }
+
+    void GameStateChanged(GameState _gameState)
+    {
+        gameState = _gameState;
     }
 
     void OnGraze(bool isGrazing)
@@ -65,6 +68,7 @@ public class GameManager : Singleton<GameManager>
     #region Event listening
     void OnEnable()
     {
+        GameEvents.OnGameStateChange += GameStateChanged;
         GameEvents.OnHit += Hit;
         GameEvents.OnGraze += OnGraze;
     }

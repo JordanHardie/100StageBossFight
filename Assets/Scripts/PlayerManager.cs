@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
     #region Variables
+    // Public
     public GameObject bullet;
     public GameObject[] barrels;
     public Animator animator;
     public float angle;
     public float timer;
     public float speed;
+
+    // Private
     float fix;
+    bool flip = true;
     #endregion
 
     #region Boundary stuff
@@ -39,42 +42,22 @@ public class PlayerManager : Singleton<PlayerManager>
     }
     #endregion
 
-    // Movement in fixed update so collisions are properly dectected
-    void FixedUpdate()
-    {
-        Moving();
-    }
-
-    // Check when we hit a bullet
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            GameEvents.ReportHit(true);
-            Destroy(collision.gameObject);
-        }
-    }
-
-    //Chuck it all into a function to make it easier to read I suppose
+    // Chuck it all into a function to make it easier to read I suppose
     void Moving()
     {
         //Get dem axes
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.D) | Input.GetKey(KeyCode.K))
+        if (Input.GetAxis("Horizontal") != 0 | Input.GetAxis("Vertical") != 0)
         {
-            if (Input.GetKey(KeyCode.K))
-            {
-                GameEvents.ReportHit(true);
-            }
-
-            if (Input.GetKey(KeyCode.A))
+            
+            if (Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.LeftArrow))
             {
                 animator.SetTrigger("GoingLeft");
             }
 
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D) | Input.GetKey(KeyCode.RightArrow))
             {
                 animator.SetTrigger("GoingRight");
             }
@@ -91,6 +74,7 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             case true:
                 float tSpeed = speed / 2;
+                timer -= Time.deltaTime;
                 transform.Translate(Vector3.right * h * tSpeed * Time.deltaTime);
                 transform.Translate(Vector3.up * v * tSpeed * Time.deltaTime);
                 break;
@@ -99,6 +83,16 @@ public class PlayerManager : Singleton<PlayerManager>
                 transform.Translate(Vector3.right * h * speed * Time.deltaTime);
                 transform.Translate(Vector3.up * v * speed * Time.deltaTime);
                 break;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            AudioManager.Instance.PlaySound(2);
+            flip = !flip;
+            UI_Manager.Instance.Pause(flip);
         }
     }
 
@@ -121,6 +115,23 @@ public class PlayerManager : Singleton<PlayerManager>
         if (gameState == GameState.GAMEOVER)
         {
             Destroy(gameObject);
+        }
+    }
+
+    // Movement in fixed update so collisions are properly dectected
+    void FixedUpdate()
+    {
+        Moving();
+    }
+
+    // Check when we hit a bullet
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            // Game manager reduces lives and all enemy bullets are converted into points
+            GameEvents.ReportHit(true);
+            Destroy(collision.gameObject);
         }
     }
 

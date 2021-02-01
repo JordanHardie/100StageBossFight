@@ -8,6 +8,7 @@ TagManager:
   - PlayerBullet
   - Spin
   - Point
+  - Enemy
   layers:
   - Default
   - TransparentFX

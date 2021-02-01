@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3157238973820143881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4349980973421489903}
+  m_Layer: 0
+  m_Name: Barrel (4)
+  m_TagString: Spin
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4349980973421489903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157238973820143881}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0.28999996, y: -0.03999996, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5658483142233855296}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &5658483142065031090
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5658483142065031090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29, y: 0.04, z: 0}
+  m_LocalPosition: {x: -0.29, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5658483142233855296}
@@ -54,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5658483142166826813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0.29, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5658483142233855296}
@@ -70,11 +100,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5658483142233855296}
   - component: {fileID: 5658483142233855299}
-  - component: {fileID: 5658483142233855298}
   - component: {fileID: 5658483142233855309}
+  - component: {fileID: 5658483142233855298}
   m_Layer: 0
   m_Name: Two
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,6 +124,8 @@ Transform:
   - {fileID: 5658483143028940057}
   - {fileID: 5658483142166826802}
   - {fileID: 5658483142065031091}
+  - {fileID: 4349980973421489903}
+  - {fileID: 4729610332185955815}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,7 +167,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7945901444079236628, guid: a48eb7bb57424b2468b141432d85d262,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,6 +180,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5658483142233855309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658483142233855308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6540f14cc44cd5644afb1e5a3c08e034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrels:
+  - {fileID: 5658483143725422464}
+  - {fileID: 5658483143028940056}
+  - {fileID: 5658483142166826813}
+  - {fileID: 5658483142065031090}
+  - {fileID: 3157238973820143881}
+  - {fileID: 8715501757750364740}
+  bullet: {fileID: 3730332848943305461, guid: ba76cb374c4cd2c428e2644d5c7dba18, type: 3}
+  explosion: {fileID: 2838557995644968441, guid: 198eba3d95d63454c9ac8ae488ed0541,
+    type: 3}
+  speed: 1
+  interval: 0.5
+  health: 50
+  hitScore: 1000
+  defeatScore: 10000
+  angle: 50
+  rate: 0.5
+  rotInterval: 0.5
+  scale: {x: 4, y: 4, z: 1}
+  points: []
 --- !u!61 &5658483142233855298
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,33 +238,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 0.91}
   m_EdgeRadius: 0
---- !u!114 &5658483142233855309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5658483142233855308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6540f14cc44cd5644afb1e5a3c08e034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrels:
-  - {fileID: 5658483143725422464}
-  - {fileID: 5658483143028940056}
-  - {fileID: 5658483142166826813}
-  - {fileID: 5658483142065031090}
-  bullet: {fileID: 3730332848943305461, guid: ba76cb374c4cd2c428e2644d5c7dba18, type: 3}
-  speed: 1
-  interval: 0.5
-  health: 100
-  hitScore: 1000
-  defeatScore: 10000
-  angle: 50
-  rate: 1
-  rotInterval: 0.5
-  points: []
 --- !u!1 &5658483143028940056
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,3 +298,33 @@ Transform:
   m_Father: {fileID: 5658483142233855296}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8715501757750364740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4729610332185955815}
+  m_Layer: 0
+  m_Name: Barrel (5)
+  m_TagString: Spin
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4729610332185955815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715501757750364740}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0.29, y: -0.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5658483142233855296}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}

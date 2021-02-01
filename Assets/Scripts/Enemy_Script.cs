@@ -8,6 +8,7 @@ public class Enemy_Script : MonoBehaviour
     // Public Variables
     public GameObject[] barrels;
     public GameObject bullet;
+    public GameObject explosion;
 
     [Header("Ship values")]
     public float speed;
@@ -21,6 +22,9 @@ public class Enemy_Script : MonoBehaviour
     public float rate;
     public float rotInterval;
 
+    [Header("Explosion size")]
+    public Vector3 scale;
+
     // Private Variables
     GameObject player;
     public List<Vector3> points;
@@ -32,6 +36,7 @@ public class Enemy_Script : MonoBehaviour
 
     void Start()
     {
+        explosion.transform.localScale = scale;
         player = PlayerManager.Instance.gameObject;
         // Creates a list of movement points
         float start_x = -7;
@@ -51,7 +56,7 @@ public class Enemy_Script : MonoBehaviour
         // Assign a random point to move towards
         int x = Random.Range(0, points.Count);
 
-        // For reseting timers
+        // For reseting timers & stuff
         fix = interval;
         rotFix = rotInterval;
         rateFix = rate;
@@ -65,7 +70,7 @@ public class Enemy_Script : MonoBehaviour
 
     void DoStuff()
     {
-        //Move(target);
+        Move(target);
         LookAtPlayer();
         Fire();
     }
@@ -100,6 +105,7 @@ public class Enemy_Script : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
+        // This function gets called alot so I optimize it a bit by making it switch statements
         if (timer <= 0)
         {
             for (int i = 0; i < barrels.Length; i++)
@@ -107,15 +113,16 @@ public class Enemy_Script : MonoBehaviour
                 GameObject barrel = barrels[i];
 
                 if (val == 0 && barrel.CompareTag("Spin"))
+                {
                     Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+                }
 
-                if (val == 1 && barrel.CompareTag("Spin"))
+                else if (val == 1 && barrel.CompareTag("Spin"))
                 {
                     barrel.transform.Rotate(0, 0, angle);
                 }
-                        
 
-                if (val == 2)
+                else if (val == 2 && !barrel.CompareTag("Spin"))
                 {
                     Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
                 }
@@ -153,7 +160,7 @@ public class Enemy_Script : MonoBehaviour
                     interval = timer;
                     break;
             }
-        }
+        }        
     }
 
     void DestroyThis(GameState gameState)
@@ -169,12 +176,15 @@ public class Enemy_Script : MonoBehaviour
         if (health <= 0)
         {
             GameEvents.ReportScoreChange(defeatScore);
+            Instantiate(explosion, transform.position, transform.rotation);
+            AudioManager.Instance.PlaySound(1);
             Destroy(gameObject);
         }
 
         // If the enemy collides with the players bullet
         else if (collision.CompareTag("PlayerBullet"))
         {
+            AudioManager.Instance.PlaySound(3);
             health -= 1;
             GameEvents.ReportScoreChange(hitScore);
             Destroy(collision.gameObject);

@@ -147,6 +147,7 @@ MonoBehaviour:
   transtionTime: 1
   speed: 0
   IsBackground: 0
+  IsGameBG: 0
 --- !u!1 &5365005436944699908
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,8 +183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 1200}
+  m_AnchoredPosition: {x: -2000, y: 0}
+  m_SizeDelta: {x: 2000, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5365005436944699904
 CanvasRenderer:

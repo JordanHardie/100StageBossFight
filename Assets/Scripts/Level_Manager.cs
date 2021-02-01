@@ -11,6 +11,9 @@ public class Level_Manager : Singleton<Level_Manager>
     public TextMeshProUGUI titleCard;
     public string timerText;
     public float timer;
+    public float endTime;
+
+    bool gameOver = true;
 
     public void Start()
     {
@@ -19,6 +22,15 @@ public class Level_Manager : Singleton<Level_Manager>
 
     void Update()
     {
+        if (timer >= endTime)
+        {
+            if (gameOver)
+            {
+                UI_Manager.Instance.Game_over(1);
+                gameOver = false;
+            }
+        }
+
         timer += Time.deltaTime;
         System.TimeSpan t = System.TimeSpan.FromSeconds(timer);
         timerText = string.Format("{0:D2}:{1:D2}:{2:D3}", t.Minutes, t.Seconds, t.Milliseconds);
@@ -26,7 +38,7 @@ public class Level_Manager : Singleton<Level_Manager>
 
     void TimeCheck()
     {
-        if(spawns.Count == 0)
+        if (spawns.Count == 0)
         {
             CancelInvoke();
             //Debug.Log("Canceled Invoke");
@@ -44,7 +56,7 @@ public class Level_Manager : Singleton<Level_Manager>
                     spawns.Remove(spawns[i]);
                 }
             }
-        }  
+        }
     }
 
     void DestroyThis(GameState gameState)

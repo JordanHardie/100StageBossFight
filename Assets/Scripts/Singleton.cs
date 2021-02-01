@@ -19,6 +19,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             return instance_;
         }
     }
+
     protected virtual void Awake()
     {
         if (instance_ == null)
@@ -26,8 +27,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             instance_ = this as T;
             DontDestroyOnLoad(gameObject);
         }
+
         else
         {
+            print(gameObject);
             Destroy(gameObject);
         }
     }

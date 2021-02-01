@@ -8,6 +8,7 @@ using System;
 public class UI_Manager : Singleton<UI_Manager>
 {
     #region Variables
+    // Public
     [Header("Text assignment")]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiText;
@@ -16,15 +17,18 @@ public class UI_Manager : Singleton<UI_Manager>
     public TextMeshProUGUI[] scores;
 
     [Header("Options settings")]
-    public GameObject panel;
-    public Slider volumerSlider;
     public TMP_InputField speedVal;
+    public Slider volumerSlider;
+    public GameObject endcard;
+    public GameObject settings;
+    public Button Exit;
+
+    // Private
     GameManager GM;
     Level_Manager LM;
-
     string rank = "S++";
     float destruction = 100f;
-    int score;
+    Int64 score;
     double multi = 1.0;
     #endregion
 
@@ -53,6 +57,62 @@ public class UI_Manager : Singleton<UI_Manager>
         score += result;
     }
 
+    public void Pause(bool val)
+    {
+        if(!val)
+        {
+            Time.timeScale = 0;
+            settings.SetActive(true);
+        }
+        
+        else
+        {
+            Time.timeScale = 1;
+            settings.SetActive(false);
+        }
+    }
+
+    #region Game manager events
+    public void Graze()
+    {
+        multi += 0.01f;
+        multi = Math.Round(multi, 4);
+    }
+
+    // Update lives text
+    public void Hit()
+    {
+        livesText.text = "Lives: " + GM.lives;
+    }
+
+    public void Game_over(int val)
+    {
+        Image colour = endcard.GetComponent<Image>();
+        if (val == 0)
+        {
+            colour.color = Color.red;
+        }
+
+        else if (val == 1)
+        {
+            colour.color = Color.green;
+        }
+
+        // Set all score values to be blank
+        for (int i = 0; i < scores.Length; i++)
+        {
+            TextMeshProUGUI score = scores[i];
+            score.text = "";
+        }
+
+        // Activate game over panel
+        endcard.SetActive(true);
+
+        // Reveal scores
+        StartCoroutine(ScoreReveal());
+    }
+    #endregion
+
     // Set's scores text active I.E. revealing them
     IEnumerator ScoreReveal()
     {
@@ -60,7 +120,6 @@ public class UI_Manager : Singleton<UI_Manager>
 
         for (int i = 0; i < scores.Length; i++)
         {
-
             yield return new WaitForSecondsRealtime(1f);
             TextMeshProUGUI _score = scores[i];
             switch (i)
@@ -125,7 +184,7 @@ public class UI_Manager : Singleton<UI_Manager>
                 case 5:
                     //print("5 Ran");
                     float rankVal = 0;
-                    switch(difficulty)
+                    switch (difficulty)
                     {
                         case Difficulty.EASY:
                             rankVal = 1.5f;
@@ -154,40 +213,10 @@ public class UI_Manager : Singleton<UI_Manager>
 
                     _score.text = result;
                     break;
-                #endregion
+                    #endregion
             }
         }
     }
-
-    #region Game manager events
-    public void Graze()
-    {
-        multi += 0.05f;
-        multi = Math.Round(multi, 4);
-    }
-
-    // Update lives text
-    public void Hit()
-    {
-        livesText.text = "Lives: " + GM.lives;
-    }
-
-    public void Death()
-    {
-        // Set all score values to be blank
-        for (int i = 0; i < scores.Length; i++)
-        {
-            TextMeshProUGUI score = scores[i];
-            score.text = "";
-        }
-
-        // Activate game over panel
-        panel.SetActive(true);
-
-        // Reveal scores
-        StartCoroutine(ScoreReveal());
-    }
-    #endregion
 
     #region Event listening
     void OnEnable()
